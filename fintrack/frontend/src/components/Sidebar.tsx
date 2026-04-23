@@ -13,7 +13,7 @@ interface SidebarMenuItem {
 const menuItems = [
   { label: "Dashboard", view: "dashboard" },
   { label: "Transactions", view: "transactions" },
-  { label: "Insights", view: "insights" },
+  { label: "AI Insights", view: "insights" },
   { label: "Reports", view: "reports" },
   { label: "Settings", view: "settings" },
 ] satisfies SidebarMenuItem[];
