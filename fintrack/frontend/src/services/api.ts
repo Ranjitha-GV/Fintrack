@@ -8,8 +8,12 @@ import type {
   TransactionPayload,
 } from "../types/finance";
 
+const resolvedBaseUrl = (
+  import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:3000"
+).replace(/\/+$/, "");
+
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: resolvedBaseUrl,
 });
 
 export const financeApi = {

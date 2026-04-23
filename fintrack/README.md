@@ -85,3 +85,17 @@ npm --prefix backend run start
 - Commit source + lockfiles; do not commit `node_modules/` or `dist/`.
 - Install dependencies in deployment environment, then run build/start commands.
 - Ensure `GEMINI_API_KEY` is set in deployment environment variables.
+
+## Vercel Deployment
+
+This is a split frontend/backend app. For Vercel:
+
+1. Deploy the **frontend only** by setting Vercel **Root Directory** to `frontend`.
+2. Add frontend env var in Vercel:
+   - `VITE_API_BASE_URL=https://<your-backend-url>`
+3. Deploy backend separately (Render/Railway/Fly/other Node host) and set:
+   - `GEMINI_API_KEY`
+   - `GEMINI_MODEL` (optional)
+   - `PORT`
+
+If you deploy the repo root directly to Vercel, you can get `404: NOT_FOUND` because Vercel may build the wrong app.
