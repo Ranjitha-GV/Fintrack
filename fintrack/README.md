@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FinTrack
 
-## Getting Started
+FinTrack is a full-stack personal finance app with:
 
-First, run the development server:
+- React + TypeScript frontend (`frontend/`)
+- Node.js + Express + TypeScript backend (`backend/`)
+- Local transaction management with dashboard, reports, and AI-powered extraction/insights
+
+## Tech Stack
+
+- Frontend: React, Vite, TypeScript, Tailwind, Redux Toolkit
+- Backend: Express, TypeScript, Multer, CSV/PDF parsing
+- AI: Gemini (for statement extraction and insights)
+
+## Project Structure
+
+- `frontend/` - UI app
+- `backend/` - API server
+- root `package.json` - runs frontend and backend together
+
+## Prerequisites
+
+- Node.js 18+ (Node 20+ recommended)
+- npm 9+
+- Gemini API key
+
+## Environment Setup
+
+Create `backend/.env`:
+
+```env
+GEMINI_API_KEY=your-gemini-api-key
+GEMINI_MODEL=gemini-2.5-flash
+PORT=3000
+```
+
+> Do not commit `backend/.env`.
+
+## Install
+
+From the repo root:
+
+```bash
+npm install
+npm --prefix frontend install
+npm --prefix backend install
+```
+
+## Run Locally
+
+From root:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This starts:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build
 
-## Learn More
+From root:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Production Start (Backend)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm --prefix backend run start
+```
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Manual transaction add/edit/delete
+- Bank statement upload (`.csv` / `.pdf`) with AI extraction
+- Dashboard and reports (including expense pie chart)
+- AI insights page with on-demand generation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Publish/Deploy Notes
+
+- Commit source + lockfiles; do not commit `node_modules/` or `dist/`.
+- Install dependencies in deployment environment, then run build/start commands.
+- Ensure `GEMINI_API_KEY` is set in deployment environment variables.
