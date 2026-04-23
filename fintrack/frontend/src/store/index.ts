@@ -20,7 +20,11 @@ store.subscribe(() => {
   savePersistedState({
     settings: state.settings,
     transactions: state.transaction.transactions,
-    insights: state.insight.insights,
+    insight: {
+      summary: state.insight.summary,
+      insights: state.insight.insights,
+      suggestions: state.insight.suggestions,
+    },
   });
 });
 

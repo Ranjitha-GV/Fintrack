@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Sidebar, type AppView } from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
 import { DashboardPage } from "./pages/DashboardPage";
+import { InsightsPage } from "./pages/InsightsPage";
+import { ReportsPage } from "./pages/ReportsPage";
 import { TransactionsPage } from "./pages/TransactionsPage";
 import { SettingsPage } from "./settings/SettingsPage";
 import { useAppSelector } from "./store/hooks";
@@ -67,6 +69,8 @@ const App = () => {
       >
         {activeView === "dashboard" && <DashboardPage />}
         {activeView === "transactions" && <TransactionsPage />}
+        {activeView === "insights" && <InsightsPage />}
+        {activeView === "reports" && <ReportsPage />}
         {activeView === "settings" && <SettingsPage />}
       </div>
     </div>

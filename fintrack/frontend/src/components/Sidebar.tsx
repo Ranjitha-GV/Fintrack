@@ -1,4 +1,9 @@
-export type AppView = "dashboard" | "transactions" | "settings";
+export type AppView =
+  | "dashboard"
+  | "transactions"
+  | "insights"
+  | "reports"
+  | "settings";
 
 interface SidebarMenuItem {
   label: string;
@@ -8,12 +13,8 @@ interface SidebarMenuItem {
 const menuItems = [
   { label: "Dashboard", view: "dashboard" },
   { label: "Transactions", view: "transactions" },
-  { label: "Insights" },
-  { label: "Budgets" },
-  { label: "Goals" },
-  { label: "Reports" },
-  { label: "Categories" },
-  { label: "Accounts" },
+  { label: "Insights", view: "insights" },
+  { label: "Reports", view: "reports" },
   { label: "Settings", view: "settings" },
 ] satisfies SidebarMenuItem[];
 

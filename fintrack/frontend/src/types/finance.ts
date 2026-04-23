@@ -21,3 +21,28 @@ export interface TransactionPayload {
   category: string;
   date: string;
 }
+
+export interface AiSummaryPayload {
+  totalSpent: number;
+  totalIncome: number;
+  topCategory: string;
+  topCategoryAmount: number;
+  weeklyChange: number;
+  topSpendingDay: string;
+}
+
+export interface AiInsightsResponse {
+  summary: string;
+  insights: string[];
+  suggestions: string[];
+}
+
+export interface ExtractedStatementTransaction {
+  date: string;
+  description: string;
+  amount: number;
+}
+
+export interface StatementExtractionResponse {
+  transactions: ExtractedStatementTransaction[];
+}

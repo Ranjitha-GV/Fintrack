@@ -38,7 +38,7 @@ export const TopBar = ({ isSidebarOpen, onToggleSidebar }: TopBarProps) => {
             </p>
           </div>
         </div>
-        <div data-component-id="top-header-right" className="flex items-center gap-3">
+        {/* <div data-component-id="top-header-right" className="flex items-center gap-3">
           <button
             data-component-id="login-button"
             className="rounded-lg border border-violet-400/60 bg-violet-100 px-3 py-1.5 text-sm font-semibold text-violet-800 transition hover:bg-violet-200 dark:border-violet-400/50 dark:bg-violet-500/20 dark:text-violet-100 dark:hover:bg-violet-500/35"
@@ -49,7 +49,7 @@ export const TopBar = ({ isSidebarOpen, onToggleSidebar }: TopBarProps) => {
             data-component-id="profile-avatar"
             className="h-8 w-8 rounded-full border border-slate-600/80 bg-gradient-to-tr from-violet-500 to-cyan-400"
           />
-        </div>
+        </div> */}
       </div>
       <div data-component-id="advice-ticker-strip" className="h-8 overflow-hidden border-t border-slate-300/80 bg-slate-100/80 dark:border-slate-800/80 dark:bg-slate-900/60">
         <div

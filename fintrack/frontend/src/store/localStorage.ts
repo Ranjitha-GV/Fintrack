@@ -7,14 +7,14 @@ import {
   initialTransactionState,
 } from "./slices/transactionSlice";
 import type { Transaction } from "../types/finance";
-import type { Insight } from "../types/finance";
+import type { InsightState } from "./slices/insightSlice";
 
 const STORAGE_KEY = "fintrack-redux-state-v1";
 
 interface PersistedState {
   settings: SettingsState;
   transactions: Transaction[];
-  insights: Insight[];
+  insight: Pick<InsightState, "summary" | "insights" | "suggestions">;
 }
 
 const isCurrency = (value: unknown): value is SettingsState["currency"] =>
@@ -32,6 +32,28 @@ const sanitizeCategoryList = (
   }
   const cleaned = value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
   return cleaned.length > 0 ? cleaned : fallback;
+};
+
+const sanitizeInsightState = (
+  value: unknown,
+): Pick<InsightState, "summary" | "insights" | "suggestions"> => {
+  if (!value || typeof value !== "object") {
+    return {
+      summary: initialInsightState.summary,
+      insights: initialInsightState.insights,
+      suggestions: initialInsightState.suggestions,
+    };
+  }
+  const raw = value as Partial<InsightState>;
+  return {
+    summary: typeof raw.summary === "string" ? raw.summary : "",
+    insights: Array.isArray(raw.insights)
+      ? raw.insights.filter((item): item is string => typeof item === "string")
+      : [],
+    suggestions: Array.isArray(raw.suggestions)
+      ? raw.suggestions.filter((item): item is string => typeof item === "string")
+      : [],
+  };
 };
 
 export const loadPersistedState = () => {
@@ -71,9 +93,13 @@ export const loadPersistedState = () => {
           : initialTransactionState.transactions,
       },
       insight: {
-        insights: Array.isArray(parsed.insights)
-          ? parsed.insights
-          : initialInsightState.insights,
+        ...initialInsightState,
+        ...sanitizeInsightState(
+          parsed.insight ??
+            (Array.isArray((parsed as { insights?: unknown }).insights)
+              ? { insights: (parsed as { insights?: unknown }).insights }
+              : undefined),
+        ),
       },
     };
   } catch {

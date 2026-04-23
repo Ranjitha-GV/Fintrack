@@ -7,6 +7,7 @@ interface TransactionListProps {
   transactions: Transaction[];
   filter: TransactionFilter;
   currency: CurrencyCode;
+  className?: string;
   onFilterChange: (filter: TransactionFilter) => void;
   onEdit: (transaction: Transaction) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
@@ -18,6 +19,7 @@ export const TransactionList = ({
   transactions,
   filter,
   currency,
+  className,
   onFilterChange,
   onEdit,
   onDelete,
@@ -32,7 +34,7 @@ export const TransactionList = ({
   return (
     <section
       data-component-id="transactions-panel"
-      className="fin-card flex h-[17rem] flex-col rounded-2xl p-5"
+      className={`fin-card flex h-[18rem] flex-col rounded-2xl p-5 ${className ?? ""}`}
     >
       <div data-component-id="transactions-header" className="flex flex-wrap items-center justify-between gap-3">
         <h2 data-component-id="transactions-title" className="text-lg font-semibold text-slate-900 dark:text-slate-100">
